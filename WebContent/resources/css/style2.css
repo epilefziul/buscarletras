@@ -8,9 +8,8 @@ html, body {
 
 body {
     display: grid;
-    grid-template-columns: 20% 1fr;
     grid-template-rows: 10% 1fr 5%;
-    grid-template-areas: "left-menu header" "left-menu content" "left-menu footer";
+    grid-template-areas: "header" "content" "footer";
 }
 
 .header {

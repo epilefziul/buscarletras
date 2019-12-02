@@ -1,0 +1,37 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:body>
+    <ui:composition template="/templates/templatelogin.xhtml">
+        <ui:define name="content">
+            <div align="center">
+                <p:panelGrid columns="2" styleClass="semBorda">
+                    <p:outputLabel value="Email: "/>
+
+                    <p:inputText value="#{usuarioController.usuario.email}"/>
+
+                    <p:outputLabel value="Senha: "/>
+
+                    <p:password value="#{usuarioController.usuario.senha}"/>
+                </p:panelGrid>
+
+                <p:separator/>
+
+                <br/>
+
+                <p:commandButton value="Entrar" ajax="true"/>
+
+                <br/><br/>
+
+                <p:commandLink value="Não possui conta? clique aqui" ajax="true"/>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
