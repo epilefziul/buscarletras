@@ -1,7 +1,7 @@
-package letras.repository;
+package main.letras.repository;
 
-import letras.domain.Usuario;
-import letras.util.JPAUtil;
+import main.letras.domain.Usuario;
+import main.letras.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -35,9 +35,22 @@ public class UsuarioRepository {
 
     public List<Usuario> listar() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Usuario> usuarios = em.createQuery("select a from busca_letras.usuarios a").getResultList();
+        List<Usuario> usuarios = em.createQuery("select a from usuarios a").getResultList();
         em.close();
         return usuarios;
     }
+
+    public Usuario login(String email, String senha) {
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+        Usuario usuario = em.createQuery("select u from busca_letras.usuarios u where u.email = :email and u.senha = :senha", Usuario.class)
+                .setParameter("email", email)
+                .setParameter("senha", senha)
+                .getSingleResult();
+        em.close();
+        return usuario;
+    }
+
+
 }
 

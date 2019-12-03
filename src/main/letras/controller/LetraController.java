@@ -1,7 +1,7 @@
-package letras.controller;
+package main.letras.controller;
 
-import letras.domain.Letra;
-import letras.repository.LetraRepository;
+import main.letras.domain.Letra;
+import main.letras.repository.LetraRepository;
 
 import javax.annotation.ManagedBean;
 import javax.faces.bean.ViewScoped;

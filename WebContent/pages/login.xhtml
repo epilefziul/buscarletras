@@ -10,27 +10,36 @@
 <h:body>
     <ui:composition template="/templates/templatelogin.xhtml">
         <ui:define name="content">
-            <div align="center">
-                <p:panelGrid columns="2" styleClass="semBorda">
-                    <p:outputLabel value="Email: "/>
+            <h:form>
 
-                    <p:inputText value="#{usuarioController.usuario.email}"/>
+                <p:growl id="msg" showDetail="false" />
 
-                    <p:outputLabel value="Senha: "/>
+                <div align="center">
+                    <p:panelGrid columns="2" styleClass="semBorda">
+                        <p:outputLabel value="Email: "/>
 
-                    <p:password value="#{usuarioController.usuario.senha}"/>
-                </p:panelGrid>
+                        <p:inputText value="#{usuarioController.usuario.email}"/>
 
-                <p:separator/>
+                        <p:outputLabel value="Senha: "/>
 
-                <br/>
+                        <p:password value="#{usuarioController.usuario.senha}"/>
+                    </p:panelGrid>
 
-                <p:commandButton value="Entrar" ajax="true"/>
+                    <p:separator/>
 
-                <br/><br/>
+                    <br/>
 
-                <p:commandLink value="Não possui conta? clique aqui" ajax="true"/>
-            </div>
+                    <p:commandButton value="Entrar" ajax="true" action="#{usuarioController.login()}" update="msg" />
+
+                    <br/><br/>
+
+                    <!--                <p:commandLink value="Não possui conta? clique aqui" ajax="true" action="" /> <a href="cadusuario.xhtml"/>-->
+
+                    <p:commandLink action="#{pagesUtil.redirecionarParaPage('pages/cadusuario')}"
+                                   value="Não possui conta? Clique aqui" ajax="true" immediate="true"/>
+
+                </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

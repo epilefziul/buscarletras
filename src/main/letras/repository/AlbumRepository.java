@@ -1,42 +1,42 @@
-package letras.repository;
+package main.letras.repository;
 
-import letras.domain.Letra;
-import letras.util.JPAUtil;
+import main.letras.domain.Album;
+import main.letras.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class LetraRepository {
+public class AlbumRepository {
 
-    public void cadastrar(Letra letra) {
+    public void cadastrar(Album album) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        em.persist(letra);
+        em.persist(album);
         em.getTransaction().commit();
         em.close();
     }
 
-    public void alterar(Letra letra) {
+    public void alterar(Album album) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        em.merge(letra);
+        em.merge(album);
         em.getTransaction().commit();
         em.close();
     }
 
-    public void remover(Letra letra) {
+    public void remover(Album album) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        letra = em.merge(letra);
-        em.remove(letra);
+        album = em.merge(album);
+        em.remove(album);
         em.getTransaction().commit();
         em.close();
     }
 
-    public List<Letra> listar() {
+    public List<Album> listar() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Letra> letras = em.createQuery("select a from busca_letras.letras a").getResultList();
+        List<Album> albuns = em.createQuery("select a from busca_letras.albuns a").getResultList();
         em.close();
-        return letras;
+        return albuns;
     }
 }

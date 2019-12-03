@@ -8,36 +8,46 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:body>
-    <ui:composition template="/templates/templatelogin.xhtml">
+    <h1>te</h1>
+    <ui:composition template="../templates/templatelogin.xhtml">
         <ui:define name="content">
-            <div align="center">
-                <p:panelGrid columns="2" styleClass="semBorda">
-                    <p:outputLabel value="Nome: "/>
+            <h:form>
+                <p:growl id="msg"/>
 
-                    <p:inputText value="#{usuarioController.usuario.nome}"/>
+                <div align="center">
+                    <p:panelGrid columns="2" styleClass="semBorda">
+                        <p:outputLabel value="Nome: "/>
 
-                    <p:inputText value="Email: "/>
+                        <p:inputText value="#{usuarioController.usuario.nome}" id="nome" required="true" requiredMessage="O campo Nome é obrigatório!"/>
 
-                    <p:password value="#{usuarioController.usuario.email}"/>
+                        <p:outputLabel value="Email: "/>
 
-                    <p:outputLabel value="Crie uma senha: "/>
+                        <p:inputText value="#{usuarioController.usuario.email}" type="email" id="email" required="true" requiredMessage="O campo Email é obrigatório!"/>
 
-                    <p:password value="#{usuarioController.usuario.senha}"/>
+                        <p:outputLabel value="Crie uma senha: "/>
 
-                    <p:outputLabel value="Repita a enha: "/>
+                        <p:password value="#{usuarioController.usuario.senha}" match="confirmarSenha" required="true" requiredMessage="O campo Senha é obrigatório!"
+                                    validatorMessage="Os valores dos campos Senha e Confirmar Senha são diferentes!"/>
 
-                    <p:password value="#{usuarioController.usuario.senha}"/>
+                        <p:outputLabel value="Confirmar senha: "/>
 
-                </p:panelGrid>
+                        <p:password id="confirmarSenha" required="true" requiredMessage="O campo de Confirmar Senha é obrigatório!"/>
 
-                <p:separator/>
+                    </p:panelGrid>
 
-                <br/>
 
-                <p:commandButton value="Entrar" ajax="true"/>
+                    <p:separator/>
 
-                <br/><br/>
-            </div>
+                    <br/>
+
+                    <p:commandButton value="Salvar" action="#{usuarioController.salvar}" ajax="true" update="msg"/>
+                    <p:commandLink action="#{pagesUtil.redirecionarParaPage('pages/login')}"
+                                   value="Cancelar" ajax="true" immediate="true"/>
+
+                    <br/><br/>
+                </div>
+            </h:form>
+
         </ui:define>
     </ui:composition>
 </h:body>

@@ -1,13 +1,12 @@
-package letras.domain;
+package main.letras.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
-@Table(schema = "busca_letras", name = "artistas")
-@Entity(name = "artistas")
-public class Artista implements Serializable {
+@Table(name = "albuns", schema = "busca_letras")
+@Entity(name = "album")
+public class Album implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +17,7 @@ public class Artista implements Serializable {
     private String nome;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_artista")
-    private List<Album> albuns;
+    private Artista artista;
 
     public Long getId() {
         return id;
@@ -37,35 +35,35 @@ public class Artista implements Serializable {
         this.nome = nome;
     }
 
-    public List<Album> getAlbuns() {
-        return albuns;
+    public Artista getArtista() {
+        return artista;
     }
 
-    public void setAlbuns(List<Album> albuns) {
-        this.albuns = albuns;
+    public void setArtista(Artista artista) {
+        this.artista = artista;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Artista artista = (Artista) o;
-        return Objects.equals(id, artista.id) &&
-                Objects.equals(nome, artista.nome) &&
-                Objects.equals(albuns, artista.albuns);
+        Album album = (Album) o;
+        return Objects.equals(id, album.id) &&
+                Objects.equals(nome, album.nome) &&
+                Objects.equals(artista, album.artista);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, albuns);
+        return Objects.hash(id, nome, artista);
     }
 
     @Override
     public String toString() {
-        return "Artista{" +
+        return "Album{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", albuns=" + albuns +
+                ", artista=" + artista +
                 '}';
     }
 }

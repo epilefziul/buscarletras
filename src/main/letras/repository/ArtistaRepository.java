@@ -1,7 +1,7 @@
-package letras.repository;
+package main.letras.repository;
 
-import letras.domain.Artista;
-import letras.util.JPAUtil;
+import main.letras.domain.Artista;
+import main.letras.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;

@@ -1,4 +1,4 @@
-package letras.util;
+package main.letras.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 
-    private static final String PERSISTENCE_UNIT = "noticiasPU";
+    private static final String PERSISTENCE_UNIT = "letrasPU";
     private static ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();
     private static EntityManagerFactory entityManagerFactory;
 

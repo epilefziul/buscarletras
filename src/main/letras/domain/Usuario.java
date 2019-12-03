@@ -1,11 +1,11 @@
-package letras.domain;
+package main.letras.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Table(schema = "busca_letras", name = "usuarios")
-@Entity(name = "usuarios")
+@Entity(name = "usuario")
 public class Usuario implements Serializable {
 
     @Id

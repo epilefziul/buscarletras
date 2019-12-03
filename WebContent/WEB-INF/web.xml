@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
-    <display-name>busca-letras</display-name>
+    <display-name>busca-main.letras</display-name>
     <welcome-file-list>
         <welcome-file>pages/login.faces</welcome-file>
     </welcome-file-list>
@@ -34,5 +34,9 @@
     <context-param>
         <param-name>javax.faces.STAGE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/META-INF/persistence.xml</param-value>
     </context-param>
 </web-app>
