@@ -3,6 +3,7 @@ package main.letras.controller;
 import main.letras.domain.Artista;
 import main.letras.domain.Letra;
 import main.letras.repository.ArtistaRepository;
+import main.letras.util.PagesUtil;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -46,10 +47,10 @@ public class ArtistaController {
         try {
             artistaRepository.remover(artistaSelecionado);
             fecharDialog("dlgExcluirArtista");
-            mensagemDeSucesso("Artista excluído com sucesso!");
+            PagesUtil.mensagemDeErro("Artista excluído com sucesso!");
             carregarDadosTela();
         } catch (Exception e) {
-            mensagemDeSucesso(e);
+            PagesUtil.mensagemDeErro(e);
         }
     }
 
@@ -63,10 +64,10 @@ public class ArtistaController {
         try {
             artistaRepository.alterar(artistaSelecionado);
             fecharDialog("dlgEditarArtista");
-            mensagemDeSucesso("Artista editado com sucesso!");
+            PagesUtil.mensagemDeErro("Artista editado com sucesso!");
             carregarDadosTela();
         } catch (Exception e) {
-            mensagemDeSucesso(e);
+            PagesUtil.mensagemDeErro(e);
         }
     }
 
@@ -83,7 +84,7 @@ public class ArtistaController {
             mensagemDeSucesso("Artista cadastrado com sucesso!");
             carregarDadosTela();
         } catch (Exception e) {
-            mensagemDeSucesso(e);
+            PagesUtil.mensagemDeErro(e);
         }
     }
 

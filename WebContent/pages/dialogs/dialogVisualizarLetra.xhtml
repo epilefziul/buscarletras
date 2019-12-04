@@ -8,12 +8,27 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
     <p:dialog widgetVar="dlgVisualizarLetra" resizable="false" closable="true" maximizable="false"
-              id="dlgVisualizarLetra"
-              draggable="false" closeOnEscape="false" modal="true" header="#{artistaController.letraSelecionada.nome}"
-              width="500">
+              id="dlgVisualizarLetra" position="center" dynamic="true" width="900"
+              draggable="false" closeOnEscape="false" modal="true" header="#{artistaController.letraSelecionada.nome}">
+
         <h:form id="formVisualizarLetra">
-            <div align="center">
-                <p:outputLabel value="#{artistaController.letraSelecionada.texto}" escape="false"/>
+            <div class="container-card-letra">
+                <div class="card-letra">
+                    <div align="center">
+
+                        <p:outputLabel value="Nome: #{artistaController.letraSelecionada.nome}"
+                                       style="font-size: 1.3em; font-weight: bold;"/>
+
+                        <p:separator/>
+
+                        <p:outputLabel value="Album: #{artistaController.letraSelecionada.album.nome}"
+                                       style="font-size: 1.2em; font-weight: bold;"/>
+
+                        <p:separator/>
+
+                        <p:outputLabel value="#{artistaController.letraSelecionada.texto}" escape="false"/>
+                    </div>
+                </div>
             </div>
         </h:form>
     </p:dialog>

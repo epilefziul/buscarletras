@@ -43,17 +43,14 @@ public class ArtistaRepository {
 
     public Boolean verificaSeArtistaPossuiAlbum(Artista artista) {
         EntityManager em = JPAUtil.getEntityManager();
-        try {
-            Album album = em.createQuery("select a from Album a where a.artista.id = :id", Album.class)
-                    .setParameter("id", artista.getId())
-                    .getSingleResult();
-            if (album != null) {
-                return true;
-            }
-            return true;
-        } catch (Exception e) {
+        List<Album> albuns = em.createQuery("select a from Album a where a.artista.id = :id", Album.class)
+                .setParameter("id", artista.getId())
+                .getResultList();
+
+        if (albuns == null || albuns.isEmpty() || albuns.size() == 0) {
             return false;
         }
+        return true;
     }
 }
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+    <p:dialog widgetVar="dlgExcluirAlbum" resizable="false" closable="true" maximizable="false"
+              draggable="false" closeOnEscape="false" modal="true" header="Confirmar exclusão...">
+        <h:form id="formExcluirAlbum">
+
+            <p:growl showDetail="true"/>
+
+            <div align="center">
+                <p:outputLabel value="Deseja excluir o album, #{albumController.albumSelecionado.nome}?"/>
+
+                <p:separator/>
+
+                <p:panelGrid columns="2" styleClass="semBorda">
+
+                    <p:commandButton value="Confirmar" ajax="true" icon="ui-icon-check"
+                                     action="#{albumController.excluirAlbum}"
+                                     update=":formExcluirAlbum, :formAlbuns"/>
+
+                    <p:commandButton value="Cancelar" ajax="true" onclick="PF('dlgExcluirAlbum').hide()"
+                                     icon="ui-icon-closethick"/>
+
+                </p:panelGrid>
+            </div>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

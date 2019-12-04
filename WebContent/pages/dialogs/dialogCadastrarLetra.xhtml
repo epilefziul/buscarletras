@@ -1,0 +1,69 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+    <p:dialog widgetVar="dlgCadastrarLetra" resizable="false" closable="true" maximizable="false" position="center"
+              draggable="false" closeOnEscape="false" modal="true" header="Cadastrar letra">
+
+        <h:form id="formCadastrarLetra">
+
+            <p:growl showDetail="true"/>
+
+            <div class="container-card-letra">
+                <div class="card-letra">
+                    <div align="center">
+
+                        <p:panelGrid columns="2" styleClass="semBorda">
+
+                            <p:outputLabel value="Nome: " style="font-size: 1.3em; font-weight: bold;"/>
+
+                            <p:inputText value="#{letraController.letra.nome}"/>
+
+                        </p:panelGrid>
+
+                        <p:separator/>
+
+                        <p:panelGrid columns="2" styleClass="semBorda">
+
+                            <p:outputLabel value="Album: " style="font-size: 1.2em; font-weight: bold;"/>
+
+                            <p:selectOneMenu value="#{letraController.letra.album.id}" required="true"
+
+                                             requiredMessage="Informe o album">
+                                <f:selectItems value="#{letraController.listarTodosAlbuns()}" var="album"
+                                               itemLabel="#{album.nome}"
+                                               itemValue="#{album.id}"/>
+
+                            </p:selectOneMenu>
+
+                        </p:panelGrid>
+
+                        <p:separator/>
+
+                        <p:textEditor value="#{letraController.letra.texto}" required="true"
+                                      requiredMessage="Informe o texto da letra" style="height: 500px;"/>
+
+                        <p:separator/>
+
+                        <p:panelGrid columns="2" styleClass="semBorda">
+
+                            <p:commandButton value="Confirmar" ajax="true" icon="ui-icon-check"
+                                             action="#{letraController.cadastrar}"
+                                             update=":formCadastrarLetra, :formLetras"/>
+
+                            <p:commandButton value="Cancelar" ajax="true" onclick="PF('dlgCadastrarLetra').hide()"
+                                             icon="ui-icon-closethick"/>
+
+                        </p:panelGrid>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

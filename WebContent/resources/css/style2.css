@@ -8,7 +8,7 @@ html, body {
 
 body {
     display: grid;
-    grid-template-rows: 10% 1fr 5%;
+    grid-template-rows: 10% 1fr 3%;
     grid-template-areas: "header" "content" "footer";
 }
 
@@ -18,7 +18,11 @@ body {
     align-items: center;
     justify-content: center;
     grid-area: header;
-    background-color: gray;
+    background-color: #1584de;
+}
+
+.white-text{
+    color: #ffffff;
 }
 
 .left-menu {
@@ -45,7 +49,7 @@ body {
     align-items: center;
     justify-content: center;
     grid-area: footer;
-    background-color: gray;
+    background-color: #1584de;
 }
 
 .semBorda tr, .semBorda td {

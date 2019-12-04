@@ -1,6 +1,7 @@
 package main.letras.repository;
 
 import main.letras.domain.Album;
+import main.letras.domain.Letra;
 import main.letras.util.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -35,8 +36,19 @@ public class AlbumRepository {
 
     public List<Album> listar() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Album> albuns = em.createQuery("select a from busca_letras.albuns a").getResultList();
+        List<Album> albuns = em.createQuery("select a from Album a").getResultList();
         em.close();
         return albuns;
+    }
+
+    public Boolean verificaSeAlbumPossuiLetras(Album album) {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Letra> letras = em.createQuery("select l from Letra l where l.album.id = :id", Letra.class)
+                .setParameter("id", album.getId())
+                .getResultList();
+        if (letras == null || letras.isEmpty() || letras.size() == 0) {
+            return false;
+        }
+        return true;
     }
 }

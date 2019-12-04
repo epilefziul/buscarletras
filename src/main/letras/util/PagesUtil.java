@@ -43,9 +43,9 @@ public class PagesUtil {
                 .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, mensagem, "Sucesso"));
     }
 
-    public static void mensagemDeSucesso(Exception e) {
+    public static void mensagemDeErro(Exception e) {
         FacesContext.getCurrentInstance()
-                .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, e.getMessage(), "Sucesso"));
+                .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, e.getMessage(), "Erro"));
     }
 
     public static void mensagemDeAlerta(String mensagem) {

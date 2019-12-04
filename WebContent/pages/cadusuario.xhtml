@@ -18,20 +18,24 @@
                     <p:panelGrid columns="2" styleClass="semBorda">
                         <p:outputLabel value="Nome: "/>
 
-                        <p:inputText value="#{usuarioController.usuario.nome}" id="nome" required="true" requiredMessage="O campo Nome é obrigatório!"/>
+                        <p:inputText value="#{usuarioController.usuario.nome}" id="nome" required="true"
+                                     requiredMessage="O campo Nome é obrigatório!"/>
 
                         <p:outputLabel value="Email: "/>
 
-                        <p:inputText value="#{usuarioController.usuario.email}" type="email" id="email" required="true" requiredMessage="O campo Email é obrigatório!"/>
+                        <p:inputText value="#{usuarioController.usuario.email}" type="email" id="email" required="true"
+                                     requiredMessage="O campo Email é obrigatório!"/>
 
                         <p:outputLabel value="Crie uma senha: "/>
 
-                        <p:password value="#{usuarioController.usuario.senha}" match="confirmarSenha" required="true" requiredMessage="O campo Senha é obrigatório!"
+                        <p:password value="#{usuarioController.usuario.senha}" match="confirmarSenha" required="true"
+                                    requiredMessage="O campo Senha é obrigatório!"
                                     validatorMessage="Os valores dos campos Senha e Confirmar Senha são diferentes!"/>
 
                         <p:outputLabel value="Confirmar senha: "/>
 
-                        <p:password id="confirmarSenha" required="true" requiredMessage="O campo de Confirmar Senha é obrigatório!"/>
+                        <p:password id="confirmarSenha" required="true"
+                                    requiredMessage="O campo de Confirmar Senha é obrigatório!"/>
 
                     </p:panelGrid>
 
@@ -40,9 +44,12 @@
 
                     <br/>
 
-                    <p:commandButton value="Salvar" action="#{usuarioController.salvar}" ajax="true" update="msg"/>
-                    <p:commandLink action="#{pagesUtil.redirecionarParaPage('pages/login')}"
-                                   value="Cancelar" ajax="true" immediate="true"/>
+                    <p:panelGrid columns="2" styleClass="semBorda">
+                        <p:commandButton value="Salvar" action="#{usuarioController.salvar}" ajax="true" update="msg"/>
+
+                        <p:commandButton action="#{pagesUtil.redirecionarParaPage('pages/login')}"
+                                         value="Cancelar" ajax="true" immediate="true"/>
+                    </p:panelGrid>
 
                     <br/><br/>
                 </div>

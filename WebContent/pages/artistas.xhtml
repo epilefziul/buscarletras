@@ -27,13 +27,15 @@
 
                 <br/>
 
-                <p:commandButton value="Cadastrar" ajax="true" action="#{artistaController.abrirDialogCadastrarArtista}"/>
+                <p:commandButton value="Cadastrar" ajax="true"
+                                 action="#{artistaController.abrirDialogCadastrarArtista}"/>
 
                 <br/><br/>
 
-                <p:dataTable value="#{artistaController.artistas}" var="artista">
+                <p:dataTable value="#{artistaController.artistas}" var="artista"
+                             emptyMessage="Nenhum artista encontrado" paginator="true" paginatorPosition="bottom">
 
-                    <p:column headerText="Nome">
+                    <p:column headerText="Nome" filterBy="#{artista.nome}">
 
                         <div align="center">
 

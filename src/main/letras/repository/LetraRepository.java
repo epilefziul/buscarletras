@@ -35,7 +35,7 @@ public class LetraRepository {
 
     public List<Letra> listar() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Letra> letras = em.createQuery("select a from busca_letras.letras a").getResultList();
+        List<Letra> letras = em.createQuery("select a from Letra  a").getResultList();
         em.close();
         return letras;
     }

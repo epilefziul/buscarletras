@@ -7,12 +7,63 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+<f:metadata>
+    <f:viewAction action="#{albumController.listarTodosAlbuns}"/>
+</f:metadata>
+
 <h:body>
     <ui:composition template="/templates/templategeral.xhtml">
         <ui:define name="content">
-            <h:form>
-                <h1>ALBUNS</h1>
+
+            <h:form id="formAlbuns">
+
+                <div align="center">
+                    <h1>ALBUNS</h1>
+                </div>
+
+                <br/><br/>
+
+                <p:commandButton value="Cadastrar" ajax="true" immediate="true"
+                                 action="#{albumController.abrirDialogCadastrarAlbum}"/>
+
+                <br/><br/>
+
+                <p:dataTable value="#{albumController.albuns}" var="album" emptyMessage="Nenhum album encontrado"
+                             paginator="true" paginatorPosition="bottom">
+
+
+                    <p:column headerText="Nome" filterBy="#{album.nome}">
+                        <div align="center">
+                            <h:outputText value="#{album.nome}"/>
+                        </div>
+                    </p:column>
+
+                    <p:column headerText="Artista" filterBy="#{album.artista.nome}">
+                        <div align="center">
+                            <h:outputText value="#{album.artista.nome}"/>
+                        </div>
+                    </p:column>
+
+                    <p:column headerText="Ações">
+                        <div align="center">
+                            <p:commandButton title="Editar" ajax="true" icon="ui-icon-pencil" immediate="true"
+                                             action="#{albumController.abrirDialogEditarAlbum(album)}"/>
+
+                            <p:commandButton title="Excluir" ajax="true" icon="ui-icon-trash" immediate="true"
+                                             action="#{albumController.abrirDialogExcluirAlbum(album)}"
+                                             disabled="#{albumController.verificaSeAlbumPossuiLetras(album)}"/>
+                        </div>
+                    </p:column>
+
+                </p:dataTable>
             </h:form>
+
+            <ui:include src="dialogs/dialogExcluirAlbum.xhtml"/>
+
+            <ui:include src="dialogs/dialogEditarAlbum.xhtml"/>
+
+            <ui:include src="dialogs/dialogCadastrarAlbum.xhtml"/>
+
         </ui:define>
     </ui:composition>
 </h:body>

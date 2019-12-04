@@ -2,16 +2,15 @@ package main.letras.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Table(name = "albuns", schema = "busca_letras")
 @Entity
 public class Album implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_album")
-    @SequenceGenerator(name = "seq_id_album", sequenceName ="albuns_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -24,6 +23,11 @@ public class Album implements Serializable {
 
     @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
     private List<Letra> letras;
+
+    public Album() {
+        this.artista = new Artista();
+        this.letras = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;

@@ -17,8 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static main.letras.util.PagesUtil.redirecionarParaPage;
-import static main.letras.util.SessionUtil.OBJ_USUARIO;
-import static main.letras.util.SessionUtil.adicionaObjetoUsuarioNaSessao;
+import static main.letras.util.SessionUtil.*;
 
 @ManagedBean
 @ViewScoped
@@ -32,9 +31,10 @@ public class UsuarioController implements Serializable {
         this.usuarioRepository = new UsuarioRepository();
     }
 
-    public void salvar() {
+    public void salvar() throws IOException {
         if (validarEmail()) {
             usuarioRepository.cadastrar(usuario);
+            redirecionarParaPage("pages/login");
         }
     }
 
@@ -85,6 +85,11 @@ public class UsuarioController implements Serializable {
             adicionaObjetoUsuarioNaSessao(OBJ_USUARIO, usuarioAutenticado);
             redirecionarParaPage("index");
         }
+    }
+
+    public void deslogar() throws IOException {
+        encerrarSessao();
+        redirecionarParaPage("pages/login");
     }
 
 }

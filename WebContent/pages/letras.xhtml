@@ -7,12 +7,66 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+<f:metadata>
+    <f:viewAction action="#{letraController.listarTodasLetras()}"/>
+</f:metadata>
 <h:body>
     <ui:composition template="/templates/templategeral.xhtml">
         <ui:define name="content">
-            <h:form>
-                <h1>LETRAS</h1>
+            <h:form id="formLetras">
+
+                <div align="center">
+                    <h1>LETRAS</h1>
+                </div>
+
+                <br/>
+
+                <p:commandButton value="Cadastrar" ajax="true" immediate="true"
+                                 action="#{letraController.abrirDialogCadastrarLetra}"/>
+
+                <br/>
+
+                <p:repeat value="#{letraController.letras}" var="letra">
+                    <div class="container-card-letra">
+                        <div class="card-letra">
+                            <div align="center">
+
+                                <p:outputLabel value="Nome: #{letra.nome}"
+                                               style="font-size: 1.3em; font-weight: bold;"/>
+
+                                <p:separator/>
+
+                                <p:outputLabel value="Album: #{letra.album.nome}"
+                                               style="font-size: 1.2em; font-weight: bold;"/>
+
+                                <p:separator/>
+
+                                <p:outputLabel value="#{letra.texto}" escape="false"/>
+
+                                <p:separator/>
+
+                                <p:panelGrid columns="2" styleClass="semBorda">
+
+                                    <p:commandButton ajax="true" value="Editar" immediate="true"
+                                                     action="#{letraController.abrirDialogEditarLetra(letra)}"/>
+
+                                    <p:commandButton ajax="true" value="Excluir" immediate="true"
+                                                     action="#{letraController.abrirDialogExcluirLetra(letra)}"/>
+
+                                </p:panelGrid>
+                            </div>
+                        </div>
+                    </div>
+                </p:repeat>
+
             </h:form>
+
+            <ui:include src="dialogs/dialogCadastrarLetra.xhtml"/>
+
+            <ui:include src="dialogs/dialogExcluirLetra.xhtml"/>
+
+            <ui:include src="dialogs/dialogEditarLetra.xhtml"/>
+
         </ui:define>
     </ui:composition>
 </h:body>

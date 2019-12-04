@@ -12,20 +12,20 @@
 </h:head>
 <h:body>
     <header class="header">
-        <h1>♫Buscar Letras</h1>
+        <h1 class="white-text">♫Buscar Letras</h1>
     </header>
 
     <aside class="left-menu">
 
         <h:form>
             <div align="center"
-                 style="display: flex; flex-direction: column; align-items: center; width: 100%; padding: 25px;">
+                 style="display: flex; flex-direction: column; align-items: center; width: 100%;">
 
 
-                <h:outputText value="Bem vindo" style="font-size: 1.6em;"/>
+                <h:outputText class="white-text" value="Bem-vindo" style="font-size: 1.6em;"/>
 
-                <h:outputText value="#{usuarioController.obterUsuarioLogado().nome}"
-                              style="font-weight: bold; font-size: 1.4em;"/>
+                <h:outputText class="white-text" value="#{usuarioController.obterUsuarioLogado().nome}"
+                              style="font-weight: bold; font-size: 1.4em; padding-bottom: 20px;"/>
 
                 <p:commandLink value="Início" ajax="true" styleClass="item-menu"
                                action="#{pagesUtil.redirecionarParaPage('index')}"/>
@@ -39,9 +39,8 @@
                 <p:commandLink value="Letras" ajax="true" styleClass="item-menu"
                                action="#{pagesUtil.redirecionarParaPage('pages/letras')}"/>
 
-                <p:commandLink value="Usuários" ajax="true" styleClass="item-menu"
-                               action="#{pagesUtil.redirecionarParaPage('pages/usuarios')}"/>
-
+                <p:commandLink value="Sair" ajax="true" styleClass="item-menu"
+                               action="#{usuarioController.deslogar}"/>
             </div>
         </h:form>
 
@@ -52,7 +51,7 @@
     </main>
 
     <footer class="footer">
-        <span>Sistema desenvolvido por Luiz Felipe</span>
+        <span class="white-text">Sistema desenvolvido por Luiz Felipe</span>
     </footer>
 </h:body>
 </html>

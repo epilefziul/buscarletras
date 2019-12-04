@@ -5,12 +5,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Table(schema = "busca_letras", name = "letras")
-@Entity(name = "letra")
+@Entity
 public class Letra implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_letras")
-    @SequenceGenerator(name = "seq_id_letras", sequenceName ="letras_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -23,6 +22,10 @@ public class Letra implements Serializable {
     @JoinColumn(name = "id_album")
     @ManyToOne(fetch = FetchType.EAGER)
     private Album album;
+
+    public Letra() {
+        this.album = new Album();
+    }
 
     public Long getId() {
         return id;

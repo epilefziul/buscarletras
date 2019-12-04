@@ -1,0 +1,50 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+    <p:dialog widgetVar="dlgCadastrarAlbum" resizable="false" closable="true" maximizable="false"
+              draggable="false" closeOnEscape="false" modal="true" header="Cadastrar album">
+
+        <h:form id="formCadastrarAlbum">
+
+            <p:growl showDetail="true"/>
+
+            <div align="center">
+
+                <p:panelGrid columns="2" styleClass="semBorda">
+
+                    <p:outputLabel value="Nome: "/>
+
+                    <p:inputText value="#{albumController.album.nome}"/>
+
+                    <p:outputLabel value="Artista: "/>
+
+                    <p:selectOneMenu value="#{albumController.album.artista.id}">
+                        <f:selectItems value="#{albumController.listaTodosArtistas()}" var="artista"
+                                       itemLabel="#{artista.nome}" itemValue="#{artista.id}"/>
+                    </p:selectOneMenu>
+
+                </p:panelGrid>
+
+                <p:separator/>
+
+                <p:panelGrid columns="2" styleClass="semBorda">
+
+                    <p:commandButton value="Confirmar" ajax="true" icon="ui-icon-check"
+                                     action="#{albumController.cadastrarAlbum}"
+                                     update=":formCadastrarAlbum, :formAlbuns"/>
+
+                    <p:commandButton value="Cancelar" ajax="true" onclick="PF('dlgCadastrarAlbum').hide()"
+                                     icon="ui-icon-closethick"/>
+
+                </p:panelGrid>
+            </div>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>
