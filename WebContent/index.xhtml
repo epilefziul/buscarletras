@@ -1,31 +1,66 @@
-<ui:composition template="templates/templategeral.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:composite="http://java.sun.com/jsf/composite"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
-    <ui:define name="content">
-        <div align="center">
-            <p:panelGrid columns="2" styleClass="semBorda">
-                <p:outputLabel value="Email: "/>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <f:metadata>
+        <f:viewAction action="#{artistaController.carregarDadosTela}"/>
+    </f:metadata>
+</h:head>
+<h:body>
+    <ui:composition template="templates/templategeral.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <br/>
+                <p:repeat value="#{artistaController.artistas}" var="artista">
+                    <div class="card">
 
-                <p:inputText value="#{usuarioController.usuario.email}"/>
+                        <div align="center">
+                            <p:outputLabel value="#{artista.nome}"
+                                           style="font-size: 1.3em; font-weight: bold;"/>
+                        </div>
 
-                <p:outputLabel value="Senha: "/>
+                        <p:panelGrid columns="1" styleClass="semBorda">
 
-                <p:password value="#{usuarioController.usuario.senha}"/>
-            </p:panelGrid>
+                            <p:repeat value="#{artista.albuns}" var="album">
 
-            <p:separator/>
+                                <p:fieldset legend="#{album.nome}" toggleable="true" collapsed="true">
 
-            <br/>
+                                    <div align="center">
+                                        <p:outputLabel value="Músicas: "/>
+                                    </div>
 
-            <p:commandButton value="Entrar" ajax="true"/>
+                                    <p:repeat value="#{album.letras}" var="letra">
 
-            <br/><br/>
+                                        <ul style="list-style: none;">
+                                            <li>
+                                                <p:panelGrid columns="2" styleClass="semBorda">
+                                                    <p:outputLabel value="#{letra.nome}"
+                                                                   style="font-size: 1.3em; font-weight: bold;"/>
+                                                    <p:commandButton icon="ui-icon-search" ajax="true"
+                                                                     action="#{artistaController.abrirDialogVisualizarLetra(letra)}"/>
+                                                </p:panelGrid>
+                                            </li>
+                                        </ul>
 
-            <p:commandLink value="Não possui conta? clique aqui" ajax="true"/>
-        </div>
-    </ui:define>
-</ui:composition>
+                                    </p:repeat>
+
+                                </p:fieldset>
+
+                            </p:repeat>
+
+                        </p:panelGrid>
+                    </div>
+                </p:repeat>
+            </h:form>
+
+            <ui:include src="pages/dialogs/dialogVisualizarLetra.xhtml"/>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

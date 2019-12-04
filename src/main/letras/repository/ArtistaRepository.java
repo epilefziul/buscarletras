@@ -1,5 +1,6 @@
 package main.letras.repository;
 
+import main.letras.domain.Album;
 import main.letras.domain.Artista;
 import main.letras.util.JPAUtil;
 
@@ -35,9 +36,24 @@ public class ArtistaRepository {
 
     public List<Artista> listar() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Artista> artistas = em.createQuery("select a from busca_letras.artistas a").getResultList();
+        List<Artista> artistas = em.createQuery("select a from Artista a").getResultList();
         em.close();
         return artistas;
+    }
+
+    public Boolean verificaSeArtistaPossuiAlbum(Artista artista) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            Album album = em.createQuery("select a from Album a where a.artista.id = :id", Album.class)
+                    .setParameter("id", artista.getId())
+                    .getSingleResult();
+            if (album != null) {
+                return true;
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
 

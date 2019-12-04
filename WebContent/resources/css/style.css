@@ -28,14 +28,11 @@ body {
     align-items: center;
     justify-content: center;
     grid-area: left-menu;
-    background-color: chocolate;
+    background-color: #b5c3c5;
+    padding: 20px;
 }
 
 .content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     grid-area: content;
     padding: 20px;
 }
@@ -52,5 +49,38 @@ body {
 .semBorda tr, .semBorda td {
     border: none !important;
     background: transparent !important;
+}
+
+.card {
+    border: solid 1px #b5c3c5;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 10px 5px 5px #dedede;
+    border-radius: 20px;
+}
+
+.name-artista {
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+.item-menu {
+    text-decoration: none;
+    font-size: 1.3em;
+    background-color: #2d3435;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    width: 100% !important;
+    border: solid 1px #b5c3c5;
+    /*box-shadow: 10px 5px 5px #ffffff;*/
+}
+
+.item-menu:hover {
+    color: #2d3435;
+    background-color: white;
+    border: solid 1px #2d3435;
+    /*box-shadow: 10px 5px 5px #2d3435;*/
 }
 

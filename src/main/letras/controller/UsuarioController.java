@@ -1,7 +1,10 @@
 package main.letras.controller;
 
+import main.letras.domain.Artista;
 import main.letras.domain.Usuario;
+import main.letras.repository.ArtistaRepository;
 import main.letras.repository.UsuarioRepository;
+import main.letras.util.SessionUtil;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +17,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static main.letras.util.PagesUtil.redirecionarParaPage;
+import static main.letras.util.SessionUtil.OBJ_USUARIO;
+import static main.letras.util.SessionUtil.adicionaObjetoUsuarioNaSessao;
 
 @ManagedBean
 @ViewScoped
@@ -31,6 +36,10 @@ public class UsuarioController implements Serializable {
         if (validarEmail()) {
             usuarioRepository.cadastrar(usuario);
         }
+    }
+
+    public Usuario obterUsuarioLogado() {
+        return (Usuario) SessionUtil.recuperaObjetoDaSessao(OBJ_USUARIO);
     }
 
     public void remover(Usuario usuarioDeletar) {
@@ -55,7 +64,6 @@ public class UsuarioController implements Serializable {
     }
 
     private Boolean validarEmail() {
-
         Boolean estaValido = false;
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
@@ -66,7 +74,6 @@ public class UsuarioController implements Serializable {
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email inválido", "Erro"));
         }
-
         return estaValido;
     }
 
@@ -75,7 +82,7 @@ public class UsuarioController implements Serializable {
         if (usuarioAutenticado == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email ou Senha inválidos.", "Erro"));
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "teste.", "Erro"));
+            adicionaObjetoUsuarioNaSessao(OBJ_USUARIO, usuarioAutenticado);
             redirecionarParaPage("index");
         }
     }

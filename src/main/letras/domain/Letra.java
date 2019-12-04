@@ -9,9 +9,20 @@ import java.util.Objects;
 public class Letra implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_letras")
+    @SequenceGenerator(name = "seq_id_letras", sequenceName ="letras_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "nome")
+    private String nome;
+
+    @Column(name = "texto")
+    private String texto;
+
+    @JoinColumn(name = "id_album")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Album album;
 
     public Long getId() {
         return id;
@@ -19,5 +30,29 @@ public class Letra implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 }

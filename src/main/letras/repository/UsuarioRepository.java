@@ -35,7 +35,7 @@ public class UsuarioRepository {
 
     public List<Usuario> listar() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Usuario> usuarios = em.createQuery("select a from usuarios a").getResultList();
+        List<Usuario> usuarios = em.createQuery("select a from Usuario a").getResultList();
         em.close();
         return usuarios;
     }
@@ -43,12 +43,12 @@ public class UsuarioRepository {
     public Usuario login(String email, String senha) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        Usuario usuario = em.createQuery("select u from busca_letras.usuarios u where u.email = :email and u.senha = :senha", Usuario.class)
+        Usuario usuarioLogado = em.createQuery("select u from Usuario u where u.email = :email and u.senha = :senha", Usuario.class)
                 .setParameter("email", email)
                 .setParameter("senha", senha)
                 .getSingleResult();
         em.close();
-        return usuario;
+        return usuarioLogado;
     }
 
 

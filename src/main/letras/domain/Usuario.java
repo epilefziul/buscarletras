@@ -5,11 +5,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Table(schema = "busca_letras", name = "usuarios")
-@Entity(name = "usuario")
+@Entity
 public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_usuarios")
+    @SequenceGenerator(name = "seq_id_usuarios", sequenceName = "usuarios_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
@@ -54,29 +55,4 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) &&
-                Objects.equals(email, usuario.email) &&
-                Objects.equals(senha, usuario.senha) &&
-                Objects.equals(nome, usuario.nome);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, senha, nome);
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", nome='" + nome + '\'' +
-                '}';
-    }
 }

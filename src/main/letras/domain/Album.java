@@ -2,22 +2,28 @@ package main.letras.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "albuns", schema = "busca_letras")
-@Entity(name = "album")
+@Entity
 public class Album implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_album")
+    @SequenceGenerator(name = "seq_id_album", sequenceName ="albuns_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "nome")
     private String nome;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_artista")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Artista artista;
+
+    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
+    private List<Letra> letras;
 
     public Long getId() {
         return id;
@@ -43,27 +49,12 @@ public class Album implements Serializable {
         this.artista = artista;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Album album = (Album) o;
-        return Objects.equals(id, album.id) &&
-                Objects.equals(nome, album.nome) &&
-                Objects.equals(artista, album.artista);
+    public List<Letra> getLetras() {
+        return letras;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nome, artista);
+    public void setLetras(List<Letra> letras) {
+        this.letras = letras;
     }
 
-    @Override
-    public String toString() {
-        return "Album{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", artista=" + artista +
-                '}';
-    }
 }
