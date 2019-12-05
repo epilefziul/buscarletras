@@ -4,7 +4,7 @@
          id="WebApp_ID" version="3.0">
     <display-name>busca-main.letras</display-name>
     <welcome-file-list>
-        <welcome-file>pages/login.faces</welcome-file>
+        <welcome-file>pages/login.jsf</welcome-file>
     </welcome-file-list>
 
     <session-config>
@@ -15,7 +15,7 @@
 
     <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>delta</param-value>
+        <param-value>redmond</param-value>
     </context-param>
 
     <context-param>
@@ -29,7 +29,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.faces</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
 
     <context-param>
@@ -38,6 +38,6 @@
     </context-param>
     <context-param>
         <param-name>javax.faces.CONFIG_FILES</param-name>
-        <param-value>/META-INF/persistence.xml</param-value>
+        <param-value>src/META-INF/persistence.xml</param-value>
     </context-param>
 </web-app>

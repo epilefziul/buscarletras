@@ -47,7 +47,7 @@ public class ArtistaController {
         try {
             artistaRepository.remover(artistaSelecionado);
             fecharDialog("dlgExcluirArtista");
-            PagesUtil.mensagemDeErro("Artista excluído com sucesso!");
+            PagesUtil.mensagemDeSucesso("Artista excluído com sucesso!");
             carregarDadosTela();
         } catch (Exception e) {
             PagesUtil.mensagemDeErro(e);
@@ -64,7 +64,7 @@ public class ArtistaController {
         try {
             artistaRepository.alterar(artistaSelecionado);
             fecharDialog("dlgEditarArtista");
-            PagesUtil.mensagemDeErro("Artista editado com sucesso!");
+            PagesUtil.mensagemDeSucesso("Artista editado com sucesso!");
             carregarDadosTela();
         } catch (Exception e) {
             PagesUtil.mensagemDeErro(e);

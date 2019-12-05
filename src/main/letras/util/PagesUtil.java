@@ -35,7 +35,7 @@ public class PagesUtil {
     public static void redirecionarParaPage(String page) throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
         String url = context.getExternalContext().getRequestContextPath();
-        context.getExternalContext().redirect(url + "/" + page + ".faces");
+        context.getExternalContext().redirect(url + "/" + page + ".jsf");
     }
 
     public static void mensagemDeSucesso(String mensagem) {

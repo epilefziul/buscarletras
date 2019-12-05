@@ -6,9 +6,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head></h:head>
 <h:body>
     <p:dialog widgetVar="dlgCadastrarLetra" resizable="false" closable="true" maximizable="false" position="center"
-              draggable="false" closeOnEscape="false" modal="true" header="Cadastrar letra">
+              draggable="false" closeOnEscape="false" modal="true" header="Cadastrar letra" height="550">
 
         <h:form id="formCadastrarLetra">
 
@@ -46,7 +47,7 @@
                         <p:separator/>
 
                         <p:textEditor value="#{letraController.letra.texto}" required="true"
-                                      requiredMessage="Informe o texto da letra" style="height: 500px;"/>
+                                      requiredMessage="Informe o texto da letra"/>
 
                         <p:separator/>
 

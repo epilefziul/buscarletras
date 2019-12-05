@@ -6,10 +6,11 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-
-<f:metadata>
-    <f:viewAction action="#{letraController.listarTodasLetras()}"/>
-</f:metadata>
+<h:head>
+    <f:metadata>
+        <f:viewAction action="#{letraController.listarTodasLetras()}"/>
+    </f:metadata>
+</h:head>
 <h:body>
     <ui:composition template="/templates/templategeral.xhtml">
         <ui:define name="content">

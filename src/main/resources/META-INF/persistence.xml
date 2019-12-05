@@ -4,14 +4,15 @@
              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
 
     <persistence-unit name="letrasPU">
-        <class>main.letras.domain.Usuario</class>
         <class>main.letras.domain.Album</class>
         <class>main.letras.domain.Artista</class>
         <class>main.letras.domain.Letra</class>
+        <class>main.letras.domain.Usuario</class>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <!-- Configurações das propriedades JDBC/JPA -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5434/postgres"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="post"/>
 

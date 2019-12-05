@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static main.letras.util.PagesUtil.mensagemDeErro;
 import static main.letras.util.PagesUtil.redirecionarParaPage;
 import static main.letras.util.SessionUtil.*;
 
@@ -33,8 +34,12 @@ public class UsuarioController implements Serializable {
 
     public void salvar() throws IOException {
         if (validarEmail()) {
-            usuarioRepository.cadastrar(usuario);
-            redirecionarParaPage("pages/login");
+            try{
+                usuarioRepository.cadastrar(usuario);
+                redirecionarParaPage("pages/login");
+            }catch (Exception e){
+                mensagemDeErro(e);
+            }
         }
     }
 
